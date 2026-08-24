@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexora · Digital Showroom</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1219;
+      color: #f0f4fa;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .accent {
+      color: #00BFFF;
+    }
+
+    .btn {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #00BFFF;
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      background: rgba(0, 191, 255, 0.05);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #00BFFF;
+      border: 1.5px solid #00BFFF;
+      color: #0b1219;
+    }
+
+    .btn-primary:hover {
+      background: #0099d4;
+      border-color: #0099d4;
+      color: #fff;
+      transform: scale(1.02);
+      box-shadow: 0 8px 28px rgba(0, 191, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: #00BFFF;
+      color: #0b1219;
+      box-shadow: 0 8px 28px rgba(0, 191, 255, 0.2);
+    }
+
+    /* navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 191, 255, 0.1);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 18, 25, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #00BFFF;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: #eef4fa;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00BFFF;
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #00BFFF;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: #b0c7dd;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: #00BFFF;
+      transform: translateY(-2px);
+    }
+
+    /* hero */
+    .hero {
+      padding: 60px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #00BFFF, #3b8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #b8d0e5;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .device-mockup {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .device-card {
+      background: rgba(36, 53, 71, 0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 48px;
+      padding: 24px 20px;
+      border: 1px solid rgba(0, 191, 255, 0.2);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+      transform: rotate(2deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .device-card i {
+      font-size: 6rem;
+      color: #00BFFF;
+      opacity: 0.7;
+      filter: drop-shadow(0 12px 18px rgba(0, 191, 255, 0.2));
+    }
+
+    .device-card span {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(1deg); }
+      50% { transform: translateY(-18px) rotate(-1deg); }
+      100% { transform: translateY(0px) rotate(1deg); }
+    }
+
+    section {
+      padding: 80px 0;
+      scroll-margin-top: 100px;
+    }
+
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: #92abc4;
+      font-size: 1.1rem;
+      margin-bottom: 48px;
+    }
+
+    /* services */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+
+    .service-card {
+      background: rgba(36, 53, 71, 0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 32px 20px;
+      border: 1px solid rgba(0, 191, 255, 0.08);
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #00BFFF;
+      box-shadow: 0 20px 40px rgba(0, 191, 255, 0.08);
+    }
+
+    .service-card i {
+      font-size: 2.6rem;
+      color: #00BFFF;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #b2cadd;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .service-card .btn-small {
+      border: 1px solid #00BFFF;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .service-card .btn-small:hover {
+      background: #00BFFF;
+      color: #0b1219;
+    }
+
+    /* portfolio */
+    .portfolio-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(0, 191, 255, 0.2);
+      color: #c6d9ec;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #00BFFF;
+      color: #0b1219;
+      border-color: #00BFFF;
+      transform: scale(1.05);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(36, 53, 71, 0.3);
+      backdrop-filter: blur(6px);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 191, 255, 0.06);
+      transition: all 0.4s ease;
+      position: relative;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-card.fade-out {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+      border-color: #00BFFF;
+      box-shadow: 0 24px 48px -12px rgba(0, 191, 255, 0.2);
+    }
+
+    .project-img {
+      height: 200px;
+      width: 100%;
+      background: #1d2b3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.6rem;
+      color: #00BFFF;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-img img {
+      transform: scale(1.05);
+    }
+
+    .project-img .fallback-icon {
+      position: absolute;
+      opacity: 0.3;
+      font-size: 4rem;
+    }
+
+    .project-info {
+      padding: 22px 20px 26px;
+    }
+
+    .project-info h4 {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .project-info .category {
+      font-size: 0.8rem;
+      color: #00BFFF;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .project-info p {
+      color: #b2cadd;
+      font-size: 0.9rem;
+      margin: 8px 0 12px;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      background: rgba(0, 191, 255, 0.12);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      color: #b0d4f0;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-actions a {
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: #e0edfa;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 16px;
+      border-radius: 40px;
+      transition: 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-actions a:hover {
+      background: #00BFFF;
+      color: #0b1219;
+      border-color: #00BFFF;
+    }
+
+    /* PROJECT DETAILS OVERLAY */
+    .project-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 18, 25, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .project-overlay.active {
+      display: flex;
+    }
+
+    .project-detail-card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(36, 53, 71, 0.4);
+      backdrop-filter: blur(20px);
+      border-radius: 48px;
+      padding: 40px 36px;
+      border: 1px solid rgba(0, 191, 255, 0.15);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .project-detail-card .close-detail {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: rgba(0, 191, 255, 0.1);
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0 12px;
+      border-radius: 40px;
+      transition: 0.2s;
+      z-index: 10;
+    }
+
+    .project-detail-card .close-detail:hover {
+      background: #00BFFF;
+      color: #0b1219;
+    }
+
+    .detail-gallery {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 12px 0 24px;
+      margin-bottom: 20px;
+    }
+
+    .detail-gallery .gallery-item {
+      min-width: 160px;
+      height: 120px;
+      background: #1d2b3a;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #00BFFF;
+      border: 1px solid rgba(0, 191, 255, 0.1);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .detail-gallery .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 30px;
+      margin: 24px 0;
+    }
+
+    .detail-meta .stat {
+      background: rgba(0, 191, 255, 0.04);
+      padding: 12px 16px;
+      border-radius: 20px;
+      border-left: 3px solid #00BFFF;
+    }
+
+    .detail-meta .stat span {
+      color: #92abc4;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-meta .stat strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-top: 4px;
+    }
+
+    .detail-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin: 16px 0;
+    }
+
+    .detail-features li {
+      list-style: none;
+      background: rgba(0, 191, 255, 0.06);
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    .detail-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 20px;
+    }
+
+    .detail-tech .tech {
+      background: rgba(0, 191, 255, 0.12);
+      padding: 4px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    /* social proof */
+    .social-feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .social-card {
+      background: rgba(36, 53, 71, 0.25);
+      backdrop-filter: blur(6px);
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid rgba(0, 191, 255, 0.05);
+    }
+
+    .social-card i {
+      font-size: 2.6rem;
+      color: #00BFFF;
+    }
+
+    .social-card .count {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 8px 0;
+    }
+
+    /* testimonials */
+    .testimonial-carousel {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      padding: 12px 4px 28px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .testimonial-item {
+      min-width: 300px;
+      background: rgba(36, 53, 71, 0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 28px;
+      border: 1px solid rgba(0, 191, 255, 0.06);
+      scroll-snap-align: start;
+    }
+
+    .testimonial-item .stars {
+      color: #ffb347;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-item p {
+      font-style: italic;
+      color: #d3e4f5;
+    }
+
+    .testimonial-item .client {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .client-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #1d334a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #00BFFF;
+      border: 1px solid #00BFFF;
+    }
+
+    /* contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 60px;
+      border: 1px solid rgba(0, 191, 255, 0.15);
+      background: rgba(36, 53, 71, 0.3);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      transition: 0.2s;
+    }
+
+    .contact-form textarea {
+      border-radius: 28px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #00BFFF;
+      box-shadow: 0 0 0 4px rgba(0, 191, 255, 0.1);
+    }
+
+    .contact-info a {
+      display: block;
+      color: #b8d0e5;
+      text-decoration: none;
+      margin: 12px 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-info i {
+      width: 32px;
+      color: #00BFFF;
+    }
+
+    footer {
+      border-top: 1px solid rgba(0, 191, 255, 0.05);
+      padding: 40px 0 32px;
+      text-align: center;
+      color: #8ba3bb;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #92abc4;
+      font-size: 1.2rem;
+      display: none;
+      grid-column: 1 / -1;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      color: #00BFFF;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      nav .nav-links {
+        gap: 14px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .detail-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;vetem me 
+      }
+      .nav-links {
+        gap: 10px;
+        font-size: 0.85rem;
+      }
+      .project-detail-card {
+        padding: 24px 16px;
+      }`
+    }
+  </style>
+</head>
+<body>                                                                                                        
+  <div class="container">
+    <!-- navigation -->
+    <nav>
+      <div class="logo"> Nexora </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="social-icons">
+  <a href="https://www.tiktok.com/@nexora_studio8" target="_blank">
+  <i class="fab fa-tiktok"></i>
+</a>
+
+<a href="https://www.instagram.com/nexora_studio14" target="_blank">
+  <i class="fab fa-instagram"></i>
+</a>
+
+
+
+<a href="https://wa.me/38345703525" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+</div>
+    </nav>
+
+    <!-- hero -->
+    <section id="home" class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>We Create <span class="highlight">Stunning Websites & Apps</span> That Grow Your Business.</h1>
+          <p>Custom websites, web applications, and mobile apps designed to help brands stand out online.</p>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">View Our Work</a>
+            <a href="#contact" class="btn btn-outline">Get a Quote</a>
+          </div>
+        </div>
+        <div class="device-mockup">
+          <div class="device-card">
+            <i class="fas fa-laptop-code"></i>
+            <span>✦ live preview</span>
+            <div style="display:flex; gap:12px; justify-content:center; margin-top:16px;">
+              <i class="fas fa-mobile-alt" style="font-size:2.4rem;"></i>
+              <i class="fas fa-tablet-alt" style="font-size:2.8rem;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section id="about">
+      <h2 class="section-title">About <span class="accent">Nexora Studio</span></h2>
+      <p class="section-sub">We are a creative digital agency focused on building premium digital experiences.</p>
+      <div style="background:rgba(36,53,71,0.2); border-radius:32px; padding:40px; backdrop-filter:blur(4px); border:1px solid rgba(0,191,255,0.06);">
+        <p style="font-size:1.2rem; color:#c6d9ec; max-width:800px;">With a passion for innovation and a keen eye for design, we help brands stand out in the digital landscape. Our team delivers cutting-edge websites, applications, and strategies that drive growth.</p>
+      </div>
+    </section>
+
+    <!-- services -->
+    <section id="services">
+      <h2 class="section-title">Our <span class="accent">Services</span></h2>
+      <p class="section-sub">End-to-end digital solutions crafted with precision.</p>
+      <div class="service-grid">
+        <div class="service-card"><i class="fas fa-code"></i><h3>Website Development</h3><p>Modern, responsive websites tailored to your brand.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-store"></i><h3>E-Commerce Stores</h3><p>Scalable online stores with seamless checkout.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-cogs"></i><h3>Web Applications</h3><p>Interactive web apps built for performance.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Mobile Applications</h3><p>Native & cross-platform mobile experiences.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-paint-brush"></i><h3>UI/UX Design</h3><p>Human-centered design that delights users.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-sync-alt"></i><h3>Website Redesign</h3><p>Modernize your existing web presence.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-headset"></i><h3>Maintenance & Support</h3><p>Keep your digital assets running smoothly.</p><a href="#" class="btn-small">Learn More</a></div>
+        <div class="service-card"><i class="fas fa-chart-line"></i><h3>SEO Optimization</h3><p>Drive organic traffic with proven strategies.</p><a href="#" class="btn-small">Learn More</a></div>
+      </div>
+    </section>
+
+
+
+
+```html
+<section id="projects">
+  <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+  <p class="section-sub">Handpicked works that showcase our expertise.</p>
+
+  <div class="portfolio-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="PhoneHub">
+        <div class="fallback-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <h4>PhoneHub</h4>
+        <div class="category">E-Commerce</div>
+        <p>Modern phone e-commerce website.</p>
+
+        <div class="project-actions">
+          <a href="https://nikiwebs44.github.io/Phone/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-external-link-alt"></i> Visit
+          </a>
+
+          <a href="https://nikiwebs44.github.io/Phone/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-eye"></i> Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop" alt="Edu-Link">
+        <div class="fallback-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <h4>Edu-Link</h4>
+        <div class="category">Website</div>
+        <p>Educational platform for students and learning resources.</p>
+
+        <div class="project-actions">
+          <a href="https://nikiwebs44.github.io/Edu-link/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-external-link-alt"></i> Visit
+          </a>
+
+          <a href="https://nikiwebs44.github.io/Edu-link/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-eye"></i> Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=200&fit=crop" alt="Tech Laptop">
+        <div class="fallback-icon">
+          <i class="fas fa-laptop"></i>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <h4>Tech Laptop</h4>
+        <div class="category">E-Commerce</div>
+        <p>Technology and laptop showcase website.</p>
+
+        <div class="project-actions">
+          <a href="https://nikiwebs44.github.io/Tech-laptop/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-external-link-alt"></i> Visit
+          </a>
+
+          <a href="https://nikiwebs44.github.io/Tech-laptop/" target="_blank" class="view-detail-btn">
+            <i class="fas fa-eye"></i> Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+```
+
+
+
+
+
+
+
+<!-- Social Feed -->
+<section id="blog">
+  <h2 class="section-title">Social <span class="accent">Feed</span></h2>
+
+  <div class="social-feed">
+    <div class="social-card">
+      <i class="fab fa-tiktok"></i>
+      <div class="count">12.4K</div>
+      <div>followers</div>
+      <a href="https://www.tiktok.com/@nexora_studio8" target="_blank" class="btn-small" style="display:inline-block; margin-top:8px;">
+        Follow
+      </a>
+    </div>
+
+    <div class="social-card">
+      <i class="fab fa-instagram"></i>
+      <div class="count">8.7K</div>
+      <div>followers</div>
+      <a href="https://www.instagram.com/nexora_studio14" target="_blank" class="btn-small" style="display:inline-block; margin-top:8px;">
+        Follow
+      </a>
+    </div>
+
+    
+  </div>
+
+  <div style="display:flex; gap:20px; margin-top:20px; flex-wrap:wrap; justify-content:center;">
+    <a href="https://www.tiktok.com/@nexora_studio8" target="_blank" style="text-decoration:none; color:white;">
+      <div style="background:#1a2a3a; border-radius:24px; padding:20px; min-width:180px;">
+        <i class="fab fa-tiktok" style="color:#00BFFF;"></i>
+        <span style="font-size:0.9rem;">@nexora_studio8 · 2h</span>
+        <br>
+        ✨ New project drop
+      </div>
+    </a>
+
+    <a href="https://www.instagram.com/nexora_studio14" target="_blank" style="text-decoration:none; color:white;">
+      <div style="background:#1a2a3a; border-radius:24px; padding:20px; min-width:180px;">
+        <i class="fab fa-instagram" style="color:#00BFFF;"></i>
+        <span style="font-size:0.9rem;">@nexora_studio14 · 5h</span>
+        <br>
+        📱 Mobile UI Preview
+      </div>
+    </a>
+  </div>
+</section>
+
+    <!-- testimonials -->
+    <section id="testimonials">
+      <h2 class="section-title">Client <span class="accent">Testimonials</span></h2>
+      <div class="testimonial-carousel">
+        <div class="testimonial-item"><div class="stars">★★★★★</div><p>"Niki_Webs built our entire e-commerce platform. Stunning design and flawless performance."</p><div class="client"><div class="client-avatar">JD</div><div><strong>John D.</strong><br>Founder, VividStore</div></div></div>
+        <div class="testimonial-item"><div class="stars">★★★★★</div><p>"The mobile app they delivered exceeded our expectations. Our users love it."</p><div class="client"><div class="client-avatar">SM</div><div><strong>Sarah M.</strong><br>CEO, FitTrack</div></div></div>
+        <div class="testimonial-item"><div class="stars">★★★★★</div><p>"Professional, creative, and always on time. A true partner in digital growth."</p><div class="client"><div class="client-avatar">RL</div><div><strong>Robert L.</strong><br>CTO, Nexus</div></div></div>
+        <div class="testimonial-item"><div class="stars">★★★★★</div><p>"They redesigned our entire brand identity. Our conversion rates skyrocketed."</p><div class="client"><div class="client-avatar">AC</div><div><strong>Amanda C.</strong><br>Marketing Director</div></div></div>
+      </div>
+    </section>
+
+
+=
+<section id="contact">
+  <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+
+  <div class="contact-grid">
+    <div class="contact-form">
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="text" placeholder="Phone Number" />
+      <textarea rows="3" placeholder="Tell us about your project..."></textarea>
+
+      <button class="btn btn-primary" style="border:none; cursor:pointer;">
+        Send Message
+      </button>
+    </div>
+
+    <div class="contact-info">
+      <a href="mailto:nexorastudio2013@gmail.com">
+        <i class="fas fa-envelope"></i> nexorastudio2013@gmail.com
+      </a>
+
+      <a href="https://wa.me/155512345" target="_blank">
+        <i class="fab fa-whatsapp"></i> +38345703525
+      </a>
+
+      <a href="https://www.instagram.com/nexora_studio14/" target="_blank">
+        <i class="fab fa-instagram"></i> @Nexora_Studio
+      </a>
+
+      <a href="https://www.tiktok.com/@nexora_studio8" target="_blank">
+        <i class="fab fa-tiktok"></i> @Nexora_Studio
+      </a>
+
+      <div style="margin-top:30px; background:rgba(0,191,255,0.03); border-radius:32px; padding:20px; border:1px solid rgba(0,191,255,0.1);">
+        <i class="fas fa-clock" style="color:#00BFFF;"></i>
+        <span style="color:#b0cadd;">We reply within 24h</span>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+
+
+
+
+<footer>
+  <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin-bottom:20px;">
+    <a href="#home" style="color:#8ba3bb; text-decoration:none;">Home</a>
+    <a href="#about" style="color:#8ba3bb; text-decoration:none;">About</a>
+    <a href="#services" style="color:#8ba3bb; text-decoration:none;">Services</a>
+    <a href="#portfolio" style="color:#8ba3bb; text-decoration:none;">Portfolio</a>
+    <a href="#contact" style="color:#8ba3bb; text-decoration:none;">Contact</a>
+  </div>
+
+  <p style="font-size:0.9rem;">
+    &copy; 2026 Niki_Webs — We Build Digital Experiences.
+  </p>
+
+  <div style="margin-top:14px; display:flex; gap:18px; justify-content:center;">
+    <a href="https://www.tiktok.com/@nexora_studio8 target="_blank" style="color:#8ba3bb; font-size:1.3rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://www.instagram.com/nexora_studio14/" target="_blank" style="color:#8ba3bb; font-size:1.3rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+   
+
+    <a href="https://wa.me/+38345703525" target="_blank" style="color:#8ba3bb; font-size:1.3rem;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</footer>
+```
+
+
+
+
+  <!-- PROJECT DETAILS OVERLAY -->
+  <div class="project-overlay" id="projectOverlay">
+    <div class="project-detail-card">
+      <button class="close-detail" id="closeDetailBtn">&times;</button>
+      <h2 id="detailTitle" style="font-size:2rem; margin-bottom:4px;">Project Name</h2>
+      <div class="category" id="detailCategory" style="color:#00BFFF; text-transform:uppercase; letter-spacing:1px;">Category</div>
+      <!-- gallery -->
+      <div class="detail-gallery" id="detailGallery">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=120&fit=crop" alt="screenshot 1" /></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=120&fit=crop" alt="screenshot 2" /></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=120&fit=crop" alt="screenshot 3" /></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=120&fit=crop" alt="screenshot 4" /></div>
+      </div>
+      <p id="detailDesc" style="color:#c6d9ec; font-size:1.05rem;">Description goes here.</p>
+      <div class="detail-meta">
+        <div class="stat"><span>Client</span><strong id="detailClient">VividStore</strong></div>
+        <div class="stat"><span>Completed</span><strong id="detailDate">Jan 2026</strong></div>
+        <div class="stat"><span>Budget</span><strong id="detailBudget">$12k</strong></div>
+        <div class="stat"><span>Rating</span><strong id="detailRating">★★★★★</strong></div>
+      </div>
+      <h4 style="margin-top:12px;">Features</h4>
+      <ul class="detail-features" id="detailFeatures">.
+        <li>Responsive design</li>
+        <li>Dark mode</li>
+        <li>Payment gateway</li>
+      </ul>
+      <h4 style="margin-top:12px;">Technologies</h4>
+      <div class="detail-tech" id="detailTech">
+        <span class="tech">React</span>
+        <span class="tech">Node.js</span>
+        <span class="tech">PostgreSQL</span>
+      </div>
+      <div class="detail-actions">
+        <a href="#" class="btn btn-primary" id="detailLiveBtn"><i class="fas fa-external-link-alt"></i> Visit Live Site</a>
+        <a href="#" class="btn btn-outline">View Full Case Study</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ----- PORTFOLIO DATA WITH IMAGES -----
+    const projectsData = [{
+      id: 1,
+      title: "Vivid Store",
+      category: "E-Commerce",
+      desc: "Minimalist fashion marketplace with dynamic filters and seamless checkout.",
+      client: "VividStore",
+      date: "Jan 2026",
+      budget: "$14k",
+      rating: "★★★★★",
+      features: ["Responsive", "Dark mode", "Stripe payment", "Wishlist"],
+      tech: ["React", "Node.js", "Stripe", "MongoDB"],
+      liveLink: "https://example.com/vivid-store",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"
+    }, {
+      id: 2,
+      title: "FitTrack",
+      category: "Mobile App",
+      desc: "Health & fitness tracking with real-time analytics and social challenges.",
+      client: "FitTrack Inc.",
+      date: "Dec 2025",
+      budget: "$22k",
+      rating: "★★★★★",
+      features: ["Real-time sync", "Charts", "Social sharing", "Push notifications"],
+      tech: ["Flutter", "Firebase", "Dart"],
+      liveLink: "https://example.com/fittrack",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop"
+    }, {
+      id: 3,
+      title: "Nexus Dashboard",
+      category: "Web App",
+      desc: "Analytics dashboard for SaaS platforms with custom widgets.",
+      client: "Nexus Corp",
+      date: "Oct 2025",
+      budget: "$18k",
+      rating: "★★★★☆",
+      features: ["Custom widgets", "Data export", "Multi-team", "Audit logs"],
+      tech: ["Next.js", "Tailwind", "PostgreSQL", "Prisma"],
+      liveLink: "https://example.com/nexus",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+    }, {
+      id: 4,
+      title: "Studio Brand",
+      category: "UI/UX Design",
+      desc: "Complete brand identity & design system for a creative studio.",
+      client: "Studio Brand",
+      date: "Aug 2025",
+      budget: "$9k",
+      rating: "★★★★★",
+      features: ["Design system", "Brand guidelines", "Component library"],
+      tech: ["Figma", "Adobe XD", "Storybook"],
+      liveLink: "https://example.com/studio-brand",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop"
+    }, {
+      id: 5,
+      title: "Global Hub",
+      category: "Website",
+      desc: "Multilingual corporate portal with real-time translation.",
+      client: "Global Corp",
+      date: "Nov 2025",
+      budget: "$16k",
+      rating: "★★★★★",
+      features: ["i18n", "CMS", "Analytics", "Contact forms"],
+      tech: ["Next.js", "Contentful", "Vercel"],
+      liveLink: "https://example.com/global-hub",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+    }, {
+      id: 6,
+      title: "Urban Store",
+      category: "E-Commerce",
+      desc: "Trendy fashion e-commerce with AI recommendations.",
+      client: "Urban Fashion",
+      date: "Sep 2025",
+      budget: "$21k",
+      rating: "★★★★☆",
+      features: ["AI recs", "Cart", "Payment", "Order tracking"],
+      tech: ["React", "Node", "MongoDB", "AWS"],
+      liveLink: "https://example.com/urban-store",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"
+    }, {
+      id: 7,
+      title: "Insightly",
+      category: "Web App",
+      desc: "Data visualization tool for business intelligence.",
+      client: "Insightly Inc",
+      date: "Jul 2025",
+      budget: "$19k",
+      rating: "★★★★★",
+      features: ["Dashboards", "Export", "Live data", "Reports"],
+      tech: ["Vue.js", "D3", "Firebase"],
+      liveLink: "https://example.com/insightly",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+    }];
+
+    // Combine all projects
+    const allProjects = [...projectsData];
+
+    // render portfolio cards (main portfolio grid)
+    const grid = document.getElementById('portfolioGrid');
+    const noResults = document.getElementById('noResults');
+    let currentFilter = 'all';
+
+    function renderCards(filter = 'all') {
+      const filteredProjects = filter === 'all' 
+        ? allProjects 
+        : allProjects.filter(p => p.category === filter);
+
+      if (filteredProjects.length === 0) {
+        grid.innerHTML = '';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      
+      grid.innerHTML = filteredProjects.map(p => `
+          <div class="project-card" data-id="${p.id}" data-category="${p.category}">
+            <div class="project-img">
+              <img src="${p.image}" alt="${p.title}" loading="lazy" />
+              <div class="fallback-icon"><i class="fas fa-${p.category === 'E-Commerce' ? 'store' : p.category === 'Mobile App' ? 'mobile-alt' : p.category === 'Web App' ? 'laptop' : 'paint-brush'}"></i></div>
+            </div>
+            <div class="project-info">
+              <h4>${p.title}</h4>
+              <div class="category">${p.category}</div>
+              <p>${p.desc}</p>
+              <div>${p.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>
+              <div style="font-size:0.75rem; color:#8ba3bb;">Completed: ${p.date}</div>
+              <div class="project-actions">
+                <a href="${p.liveLink}" target="_blank" class="visit-btn"><i class="fas fa-external-link-alt"></i> Visit</a>
+                <a class="view-detail-btn" data-id="${p.id}"><i class="fas fa-eye"></i> Details</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+    }
+
+    // Initial render
+    renderCards('all');
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update active state
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Get filter value
+        const filter = this.dataset.filter;
+        currentFilter = filter;
+        
+        // Apply filter with smooth transition
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          card.classList.add('fade-out');
+        });
+        
+        setTimeout(() => {
+          renderCards(filter);
+          // Re-apply any animations
+          const newCards = document.querySelectorAll('.project-card');
+          newCards.forEach(card => {
+            card.classList.remove('fade-out');
+          });
+        }, 300);
+      });
+    });
+
+    // ----- OVERLAY LOGIC -----
+    const overlay = document.getElementById('projectOverlay');
+    const closeBtn = document.getElementById('closeDetailBtn');
+
+    function openDetail(id) {
+      const project = allProjects.find(p => p.id === id);
+      if (!project) return;
+      document.getElementById('detailTitle').textContent = project.title;
+      document.getElementById('detailCategory').textContent = project.category;
+      document.getElementById('detailDesc').textContent = project.desc;
+      document.getElementById('detailClient').textContent = project.client;
+      document.getElementById('detailDate').textContent = project.date;
+      document.getElementById('detailBudget').textContent = project.budget;
+      document.getElementById('detailRating').textContent = project.rating;
+      document.getElementById('detailLiveBtn').href = project.liveLink;
+
+      // Update gallery with project images
+      const gallery = document.getElementById('detailGallery');
+      const placeholderImages = [
+        project.image,
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=120&fit=crop",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=120&fit=crop",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=120&fit=crop"
+      ];
+      gallery.innerHTML = placeholderImages.map(src => `
+          <div class="gallery-item"><img src="${src}" alt="screenshot" loading="lazy" /></div>
+        `).join('');
+
+      // features
+      const featContainer = document.getElementById('detailFeatures');
+      featContainer.innerHTML = project.features.map(f => `<li>${f}</li>`).join('');
+
+      // tech
+      const techContainer = document.getElementById('detailTech');
+      techContainer.innerHTML = project.tech.map(t => `<span class="tech">${t}</span>`).join('');
+
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetail() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // event listeners for detail buttons (delegation on entire document)
+    document.addEventListener('click', function(e) {
+      // Handle "Details" button
+      const detailBtn = e.target.closest('.view-detail-btn');
+      if (detailBtn) {
+        e.preventDefault();
+        const id = parseInt(detailBtn.dataset.id);
+        if (id) openDetail(id);
+        return;
+      }
+      
+      // Handle "Visit" button
+      const visitBtn = e.target.closest('.visit-btn');
+      if (visitBtn) {
+        if (visitBtn.getAttribute('href') === '#') {
+          e.preventDefault();
+          const card = visitBtn.closest('.project-card');
+          if (card) {
+            const id = parseInt(card.dataset.id);
+            if (id) openDetail(id);
+          }
+        }
+      }
+    });
+
+    closeBtn.addEventListener('click', closeDetail);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeDetail();
+    });
+
+    // Also handle the static project cards in the featured projects section
+    document.querySelectorAll('#projects .view-detail-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = parseInt(this.dataset.id);
+        if (id) openDetail(id);
+      });
+    });
+  </script>
+</body>
+</html>
